@@ -9,17 +9,17 @@ import telegram_send
 
 sleep_time = 60
 url = "https://shopyphos.com/collections/tanzen"
-api_id = '6481175'
-api_hash = '833525a9d3e2960dac734f03cf674164'
-token = '1816841495:AAGo2RqHKNuYtUfxCjiWXrD9y4sIoxB5cK0'
-phone = "+4915735633867"
-event = "Sisyphos | 27. August"
+api_id = ''
+api_hash = ''
+token = ''
+phone = ""
+event = "Sisyphos | 5. September"
 
 def is_ticket_available():
     response = requests.get(
         url,
         headers={
-            "cookie": '_y=4aad59c3-e2d9-4a4d-ae87-e0c332f492a0; _shopify_y=4aad59c3-e2d9-4a4d-ae87-e0c332f492a0; secure_customer_sig=; cart_currency=EUR; _orig_referrer=; _landing_page=/collections/tanzen; _s=5500f5dc-17e4-4d37-9615-f647ae88da9f; _shopify_s=5500f5dc-17e4-4d37-9615-f647ae88da9f; _shopify_sa_p=; fsb_previous_pathname=/collections/tanzen; locksmith-params={"geonames_feature_ids":[2921044,6255148],"geonames_feature_ids:signature":"e28b076e850ebae7ed833066f9bc965fa911510e3b73ad66a842dd5f56fb0c7c"}; cart=832f20515fde3380777c14bbf6490a2a; cart_ts=1629632429; cart_sig=6de4567153712774997bd37628b04b0d; cart_ver=gcp-us-east1:1; fsb_total_price_381844=0; scapp_now=2; _shopify_sa_t=2021-08-22T11:40:30.237Z; scapp_next=3',
+            "cookie": '',
         },
         allow_redirects=True
     )
@@ -32,7 +32,7 @@ def is_ticket_available():
         titles = product.find_all("div", class_="product-card__title")
         if len(titles) == 0: continue
         title = titles[0]
-        if title.text == event and "grid-view-item--sold-out" not in product["class"]:
+        if event in title.text and "grid-view-item--sold-out" not in product["class"]:
             return True
     return False
 
